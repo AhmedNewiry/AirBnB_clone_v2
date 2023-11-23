@@ -22,7 +22,7 @@ class User(BaseModel, Base):
         password = ''
         first_name = ''
         last_name = ''
-    
+
     def __init__(self, *args, **kwargs):
         """user class initialization"""
         super().__init__(*args, **kwargs)

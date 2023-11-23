@@ -10,10 +10,10 @@ import models
 
 if models.st_type == "db":
     place_amenity = Table("place_amenity", Base.metadata,
-                         Column("place_id", String(60),
-                         ForeignKey("places.id"), primary_key=True),
-                         Column("amenity_id", String(60),
-                         ForeignKey("amenities.id"), primary_key=True))
+                          Column("place_id", String(60),
+                                 ForeignKey("places.id"), primary_key=True),
+                          Column("amenity_id", String(60),
+                                 ForeignKey("amenities.id"), primary_key=True))
 
 
 class Place(BaseModel, Base):
@@ -32,9 +32,7 @@ class Place(BaseModel, Base):
         longitude = Column(Float)
         reviews = relationship("Review", backref="place", cascade="delete")
         amenities = relationship("Amenity", secondary="place_amenity",
-                                backref="place_amenities", viewonly=False)
-
-
+                                 backref="place_amenities", viewonly=False)
 
     else:
 
@@ -81,7 +79,7 @@ class Place(BaseModel, Base):
             """ handles append method for adding an
                 Amenity.id to the attribute amenity_ids
             """
-            if type(value) is Amenity and value.id not in amenity_ids:
+            if isinstance(value, Amenity) and value.id not in amenity_ids:
                 self.amenity_ids.append(value.id)
 
     def __init__(self, *args, **kwargs):
