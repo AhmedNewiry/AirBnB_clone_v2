@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #a Bash script that configures my servers for the deployment of web_static
 sudo nginx -v
-if ! [ $? -eq 0 ]
+mycmd=$?
+if ! [ $mycmd -eq 0 ]
 then
 	sudo apt-get -y update
 	sudo apt-get install -y nginx;
@@ -10,7 +11,8 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 echo "Hello Deployment!" >> /data/web_static/releases/test/index.html
 sudo ls -l /data/web_static/current
-if [ $? -eq 0 ]
+mycmd=$?
+if [ $mycmd -eq 0 ]
 then
 	sudo rm -rf /data/web_static/current
 fi
