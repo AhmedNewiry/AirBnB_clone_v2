@@ -13,7 +13,7 @@ def do_pack():
     date_time = datetime.now().strftime('%Y%m%d%H%M%S')
     local("mkdir -p versions")
     f_path = "versions/web_static_{}.tgz".format(date_time)
-    tar = local('tar cfvz {} web_static'.format(f_path))
+    tar = local('tar -cfvz {} web_static'.format(f_path))
     if tar.failed:
         return None
     return path
