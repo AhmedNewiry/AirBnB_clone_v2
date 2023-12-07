@@ -9,8 +9,8 @@ from datetime import datetime
 import os
 
 
-env.hosts = ["100.25.211.130", "3.90.84.139"]
-env.user = "ubuntui"
+env.hosts = ["100.25.194.46", "100.25.194.197"]
+env.user = "ubuntu"
 
 
 def do_pack():

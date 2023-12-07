@@ -20,14 +20,14 @@ def do_deploy(archive_path):
         root, ext = os.path.splitext(tar_name)
         releases = "/data/web_static/releases"
         current = "/data/web_static/current"
-        run("mkdir -p {}/{}".format(releases, root))
-        run("tar xvf /temp/{} -C {}/{}".format(tar_name, releases, root))
-        run("rm /tmp/{}".format(tar_name))
-        run("rm -rf {}".format(current))
-        run("mv {}/{}/web_static/* {}/{}"
+        run("sudo mkdir -p {}/{}".format(releases, root))
+        run("sudo tar xvf /tmp/{} -C {}/{}".format(tar_name, releases, root))
+        run("sudo rm /tmp/{}".format(tar_name))
+        run("sudo rm -rf {}".format(current))
+        run("sudo mv {}/{}/web_static/* {}/{}"
             .format(releases, root, releases, root))
-        run("rm -rf {}/{}/web_static".format(releases, root))
-        run("ln -sf {}/{} {}".format(releases, root, current))
+        run("sudo rm -rf {}/{}/web_static".format(releases, root))
+        run("sudo ln -sf {}/{} {}".format(releases, root, current))
         return True
     except Exception:
         return False
