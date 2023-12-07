@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #a Bash script that configures my servers for the deployment of web_static
+
 sudo nginx -v
 mycmd=$?
 if ! [ $mycmd -eq 0 ]
