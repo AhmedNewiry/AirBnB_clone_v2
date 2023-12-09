@@ -47,7 +47,7 @@ file { '/data/web_static/shared':
 
 file {'/data/web_static/releases/test/index.html':
     ensure => 'present',
-    content => 'Hello Deployment!',
+    content => 'Hello Deployment!\n',
     owner => 'ubuntu',
     group => 'ubuntu',
 }->
