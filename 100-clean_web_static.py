@@ -15,7 +15,7 @@ def do_clean(number=0):
     tar_files = []
     r_tar_files = []
     number = int(number)
-    if number < 2:
+    if number <= 2:
 
         tar_files = sorted(os.listdir('./versions'),
                            key=lambda x: datetime.strptime(os.path.splitext(x)[0][12:],
@@ -23,14 +23,16 @@ def do_clean(number=0):
                            reverse=True)
         print(tar_files[0])
         if number == 2:
-            local(
-                "sudo cd ./versions && ls | grep -v -e {} -e {} | xargs rm -f".format(
-                    tar_files[0], tar_files[1]))
-            run("sudo cd /data/web_static/releases && ls | grep -v -e {} -e {} | xargs rm -f".format(
-                r_tar_files[0], tar_files[1]))
+            with lcd('./versions'):
+                local(
+                    "sudo ls | grep -v -e {} -e {} | xargs rm -f".format(
+                        tar_files[0], tar_files[1]))
+            with cd('/data/web_static/releases'):
+                sudo("ls | grep -v -e {} -e {} | xargs rm -rf".format(
+                    os.path.splitext(tar_files[0])[0], os.path.splitext(tar_files[1])[0]))
         elif number == 1 or number == 0:
             with lcd('./versions'):
                 local(
                     "sudo ls | grep -v {} | xargs rm -f".format(tar_files[0]))
             with cd('/data/web_static/releases'):
-                run("sudo ls | grep -v {} | xargs rm -rf".format(tar_files[0]))
+                sudo("ls | grep -v {} | xargs rm -rf".format(os.path.splitext(tar_files[0])[0]))                                                                          
