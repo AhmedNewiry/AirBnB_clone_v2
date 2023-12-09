@@ -33,4 +33,4 @@ def do_clean(number=0):
                 local(
                     "sudo ls | grep -v {} | xargs rm -f".format(tar_files[0]))
             with cd('/data/web_static/releases'):
-                run("sudo ls | grep -v {} | xargs rm -f".format(tar_files[0]))
+                run("sudo ls | grep -v {} | xargs rm -rf".format(tar_files[0]))
