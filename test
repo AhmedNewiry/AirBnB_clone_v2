@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+"""A module contianing th do_delete function"""
+from fabric.api import *
+import os
+from pathlib import Path
+
+env.user="ubuntu"
+env.hosts=['100.25.194.46', '100.25.194.197']
+def do_clean(number=0):
+    """a method that delete the unrequired tar files"""
+    if number < 2:
+        tar_files = sorted(Path(./versions).iterdir(), key=os.path.getctime)
+        r_tar_files = sorted(Path(/data/web_static/releases).iterdir(), key=os.path.getctime)
+        if number == 2:
+            local("""sudo find ./versions -name '(?:{}|{})' | xargs rm -f""".format(tar_files[0], tar_files[1]))
+            run("""sudo find /data/web_static/releases -name '(?:{}|{})' | xargs rm -f""".format(r_tar_files[0], r_tar_files[1]))
+        if number == 1 or number == 0:
+            local("""sudo find ./versions -name '(?:{})' | xargs rm -f""".format(tar_files[0]))
+            run("""sudo find /data/web_static/releases -name '(?:{})' | xargs rm -f""".format(r_tar_files[0]))
