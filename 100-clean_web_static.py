@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 env.user = "ubuntu"
-env.hosts = [''100.25.194.46, ''100.25.194.197]
+env.hosts = ['100.25.194.46', '100.25.194.197']
 
 
 def do_clean(number=0):
