@@ -21,7 +21,6 @@ def do_clean(number=0):
                            key=lambda x: datetime.strptime(os.path.splitext(x)[0][12:],
                                                            '%Y%m%d%H%M%S'),
                            reverse=True)
-        print(tar_files[0])
         if number == 2:
             with lcd('./versions'):
                 local(
